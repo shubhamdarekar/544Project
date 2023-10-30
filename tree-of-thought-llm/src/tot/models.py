@@ -6,7 +6,7 @@ import backoff
 from azure.keyvault.secrets import SecretClient
 from azure.identity import DefaultAzureCredential
 
-
+#Adding the Keyvault URL
 keyVaultName = "https://openaiapigroup45.vault.azure.net/"
 
 credential = DefaultAzureCredential()
@@ -20,12 +20,14 @@ completion_tokens = prompt_tokens = 0
 openai.api_type = 'azure'
 openai.api_version = "2023-05-15"
 
+# Pulling the keyvault api key for Azure OpenAI
 api_key = client_vault.get_secret("ApiKey").value
 if api_key != "":
     openai.api_key = api_key
 else:
     print("Warning: OPENAI_API_KEY is not set")
     
+# Pulling the keyvault base url for Azure OpenAI
 api_base = client_vault.get_secret("BaseURL").value
 if api_base != "":
     print("Warning: OPENAI_API_BASE is set to {}".format(api_base))
