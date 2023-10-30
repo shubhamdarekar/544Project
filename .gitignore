@@ -1,0 +1,7 @@
+/*__pycache__/
+tree-of-thought-llm/dist/
+tree-of-thought-llm/src/tree_of_thoughts_llm.egg-info/
+tree-of-thought-llm/.env
+*.pyc
+*.DS_Store
+.vscode
