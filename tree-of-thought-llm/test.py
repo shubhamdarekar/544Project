@@ -15,7 +15,7 @@ from tot.tasks.cryptograph import Cryptograph
 
 args = argparse.Namespace(backend='gpt-35-turbo', temperature=0.7, task='cryptograph', naive_run=False, prompt_sample='cot', method_generate='propose', method_evaluate='vote', method_select='greedy', n_generate_sample=3, n_evaluate_sample=3, n_select_sample=2)
 
-task = Cryptograph("O UE BKOCVEUJ")
+task = Cryptograph("DROBO HGC YXKO EZYX G DSWO G PSCROBWGX VSFOM HSDR RSC HSPO SX G ZSQCDLO KVYCO IL DRO COG GXM OFOBL MGL RO HOXD YED PSCRSXQ GXM RO PSCROM GXM RO PSCROM GXM YXKO RO HGC CSDDSXQ HSDR RSC BYM VYYUSXQ GD DRO KVOGB HGDOB GXM RO CGD GXM RO CGD DROX RSC VSXO CEMMOXVL HOXD MYHX PGB MYHX IOVYH GXM HROX RO MBOH SD EZ GQGSX RO IBYEQRD YED G VGBQO PVYEXMOB")
 ys, infos = solve(args, task, 900)
 print(ys[0])
 
