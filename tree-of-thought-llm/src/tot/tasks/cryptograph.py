@@ -35,7 +35,11 @@ class Cryptograph(Task):
             # y = y.replace('Plan:\n', '')
             # TODO: truncate the plan part?
             prompt += f'Choice {i}:\n{y}\n'
-        return prompt
+        return prompt + vote_prompt2
+    
+    
+    def propose_prompt_wrap(self,x: str, y: str='') -> str:
+        return propose_prompt.format(input=self.input_text)
 
     @staticmethod
     def vote_outputs_unwrap(vote_outputs: list, n_candidates: int) -> list:

@@ -238,7 +238,7 @@ class MiniCrosswordsTask(Task):
         self.cache_proposals[(x, y, n_max_propose)] = proposals
         return proposals
     
-    def evaluate(self, x: str, y: str, n_evaluate_sample: int) -> int:
+    def evaluate(self, x: str, y: str, n_evaluate_sample: int) -> dict:
         self.set_status(x, y)
         assert n_evaluate_sample == 1 # TODO: ad hoc
         count = {'sure': 0, 'maybe': 0, 'impossible': 0}

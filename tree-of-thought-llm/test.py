@@ -13,7 +13,7 @@ import argparse
 from tot.methods.bfs import solve
 from tot.tasks.cryptograph import Cryptograph
 
-args = argparse.Namespace(backend='gpt-35-turbo', temperature=0.7, task='cryptograph', naive_run=False, prompt_sample='cot', method_generate='sample', method_evaluate='vote', method_select='greedy', n_generate_sample=3, n_evaluate_sample=3, n_select_sample=2)
+args = argparse.Namespace(backend='gpt-35-turbo', temperature=0.7, task='cryptograph', naive_run=False, prompt_sample='cot', method_generate='propose', method_evaluate='vote', method_select='greedy', n_generate_sample=3, n_evaluate_sample=3, n_select_sample=2)
 
 task = Cryptograph("O UE BKOCVEUJ")
 ys, infos = solve(args, task, 900)
