@@ -277,13 +277,13 @@ vote_prompt = """
 use evaluation metrics as follows and score all solutions. Evaluation
 Coherence:
 Does the decrypted text make logical and grammatical sense in the context of the
-English language (or the relevant language of the cipher)?
+English language (or the relevant language of the cipher)? Give higher score for grammatically correct sentences.
 Consistency:
 Ensure that the same substitution rule is applied uniformly throughout the message. For
 instance, if 'A' in ciphertext translates to 'T' in plaintext, this should be consistent across
-the message.
+the message. Create a cipher key like this A→D, B→K, C→N, D→B, E→L, F→C, G→R, H→H, I→Z, J→S, K→W, L→Q, M→M, N→E, O→F, P→Y, Q→V, R→A, S→U, T→I, U→G, V→T, W→J, X→O, Y→X, Z→P and verify if everything is correctly substituted. Penalize if the substitution is not consistent.
 Word Verification:
-Check the decrypted words against a dictionary. Are they valid words?
+Check the decrypted words against a dictionary. Are they valid words? Penalize the wrong words
 Check Against Known Patterns:
 If you know certain words or phrases that might appear in the text (e.g., a salutation or
 signature), see if they emerge in the decryption.
@@ -294,6 +294,7 @@ Evaluate Completeness:
 Ensure the entire message has been addressed and there aren't parts left encrypted.
 score the following from 1 to 10:
 
+For calculating total score, the weigthage for consistency is highest.
 """
 
 vote_prompt2 = """
