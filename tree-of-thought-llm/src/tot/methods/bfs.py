@@ -18,8 +18,8 @@ def get_values(task, x, ys, n_evaluate_sample, cache_value=True):
     local_value_cache = {}
     for y in ys:  # each partial output
         if y in local_value_cache:  # avoid duplicate candidates
-            value = 0
-        else:    
+            value = 0    
+        else:
             value = get_value(task, x, y, n_evaluate_sample, cache_value=cache_value)
             local_value_cache[y] = value
         values.append(value)
@@ -27,13 +27,14 @@ def get_values(task, x, ys, n_evaluate_sample, cache_value=True):
 
 def get_votes(task, x, ys, n_evaluate_sample):
     vote_prompt = task.vote_prompt_wrap(x, ys)
+    print("vote prompt", vote_prompt)
     vote_outputs = gpt(vote_prompt, n=n_evaluate_sample, stop=None)
     values = task.vote_outputs_unwrap(vote_outputs, len(ys))
     return values
 
 def get_proposals(task, x, y): 
     propose_prompt = task.propose_prompt_wrap(x, y)
-    proposals = gpt(propose_prompt, n=1, stop=None)[0].split('\n')
+    proposals = gpt(propose_prompt, n=5, stop=None)
     return [y + _ + '\n' for _ in proposals]
 
 def get_samples(task, x, y, n_generate_sample, prompt_sample, stop):
@@ -43,7 +44,9 @@ def get_samples(task, x, y, n_generate_sample, prompt_sample, stop):
         prompt = task.cot_prompt_wrap(x, y)
     else:
         raise ValueError(f'prompt_sample {prompt_sample} not recognized')
+    print("prompt for samples", prompt)
     samples = gpt(prompt, n=n_generate_sample, stop=stop)
+    print("samples in get_samples", samples)
     return [y + _ for _ in samples]
 
 def solve(args, task, idx, to_print=True):
@@ -54,9 +57,11 @@ def solve(args, task, idx, to_print=True):
     ys = ['']  # current output candidates
     infos = []
     for step in range(task.steps):
+        print("step", step)
         # generation
         if args.method_generate == 'sample':
             new_ys = [get_samples(task, x, y, args.n_generate_sample, prompt_sample=args.prompt_sample, stop=task.stops[step]) for y in ys]
+            print("new_ys in if", new_ys)
         elif args.method_generate == 'propose':
             new_ys = [get_proposals(task, x, y) for y in ys]
         new_ys = list(itertools.chain(*new_ys))
