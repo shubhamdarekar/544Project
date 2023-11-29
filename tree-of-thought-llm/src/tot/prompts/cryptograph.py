@@ -274,7 +274,9 @@ sure
 '''
 
 vote_prompt = """
-use evaluation metrics as follows and score all solutions. Evaluation
+use evaluation metrics as follows and score all solutions. 
+The cryptogram problem is : {input}
+Evaluation
 Coherence:
 Does the decrypted text make logical and grammatical sense in the context of the
 English language (or the relevant language of the cipher)? Give higher score for grammatically correct sentences.
