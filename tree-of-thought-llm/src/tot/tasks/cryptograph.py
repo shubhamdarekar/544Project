@@ -11,7 +11,7 @@ class Cryptograph(Task):
     def __init__(self, text:str):
         # super.__init__()
         self.input_text = text
-        self.steps = 2
+        self.steps = 5
         self.stops = ['\n'] * 4
 
     def _len_(self):
